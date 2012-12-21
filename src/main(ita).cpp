@@ -159,14 +159,14 @@ uint64_t free_block_count = 0;
 
 uint64_t nFreeHDDSpace = block_size * free_block_count;
 
-::cellDbgFontPrintf(xPos, yPos, nFontSize, 0xffffffff, "Free Space on /dev_hdd0/: %.2f %s (%lld bytes)",
+::cellDbgFontPrintf(xPos, yPos, nFontSize, 0xffffffff, "Spazio libero disponibile in /dev_hdd0/: %.2f %s (%lld bytes)",
 GetByteUnit(nFreeHDDSpace),
 GetByteUnitStr(nFreeHDDSpace),
 nFreeHDDSpace
 );
 yPos += yPosDiff;
 
-//::cellDbgFontPrintf(xPos, yPos, nFontSize, 0xffffffff, "Free Space on /dev_usb000/: %.2f %s (%lld bytes)",
+//::cellDbgFontPrintf(xPos, yPos, nFontSize, 0xffffffff, "Spazio libero disponibile in /dev_usb000/: %.2f %s (%lld bytes)",
 // GetByteUnit(nFreeUSB000Space),
 // GetByteUnitStr(nFreeUSB000Space),
 // nFreeUSB000Space
@@ -175,7 +175,7 @@ yPos += yPosDiff;
 //yPos += yPosDiff;
 
 ::cellDbgFontPrintf(xPos, yPos, nFontSize, 0xffffffff,
-"Total PKG found on all scanned devices: %d", gamePKG->nTotalPKG);
+"PKG Totali trovati su tutti i dispositivi analizzati: %d", gamePKG->nTotalPKG);
 
 yPos += yPosDiff;
 
@@ -237,7 +237,7 @@ nPKG+1,
 gamePKG->pkglst[nPKG]->title,
 GetByteUnit(gamePKG->pkglst[nPKG]->nSize), GetByteUnitStr(gamePKG->pkglst[nPKG]->nSize),
 gamePKG->pkglst[nPKG]->bInternal ? "[HDD]" : "[USB]",
-gamePKG->pkglst[nPKG]->bQueued ? "[Queued]" : " "
+gamePKG->pkglst[nPKG]->bQueued ? "[In coda]" : " "
 );
 
 yPos += yPosDiff;
@@ -363,7 +363,7 @@ if(gamePKG->nCopyStatus == 2)
 cellMsgDialogAbort();
 
 char szMsg[256] = "";
-sprintf(szMsg, "Successfully added \"%s\" to queue.", gamePKG->szFileIn);
+sprintf(szMsg, "Aggiunto con successo \"%s\" in coda.", gamePKG->szFileIn);
 
 ::cellMsgDialogOpen2(
 CELL_MSGDIALOG_DIALOG_TYPE_NORMAL | CELL_MSGDIALOG_TYPE_BUTTON_TYPE_OK | CELL_MSGDIALOG_TYPE_DISABLE_CANCEL_ON,
@@ -380,7 +380,7 @@ if(gamePKG->nCopyStatus == 10)
 cellMsgDialogAbort();
 
 char szMsg[256] = "";
-sprintf(szMsg, "Error while processing \"%s\".", gamePKG->szFileIn);
+sprintf(szMsg, "Errore durante l'elaborazione \"%s\".", gamePKG->szFileIn);
 
 ::cellMsgDialogOpen2(
 CELL_MSGDIALOG_DIALOG_TYPE_NORMAL | CELL_MSGDIALOG_TYPE_BUTTON_TYPE_OK | CELL_MSGDIALOG_TYPE_DISABLE_CANCEL_OFF,
